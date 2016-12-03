@@ -141,7 +141,7 @@ function beeswax(name::AbstractString,debug::Int,pause::Float64,limit::Int)
 
     #check if it’s a valid program
     if deb.d<9
-        if ismatch(r"[\*_\\/]",readstring(name))==false
+        if ismatch(r"[\*_\\/]",readall(name))==false
             error("No starting point found. Not a valid beeswax program.")
         end
     elseif deb.d>=9
@@ -256,7 +256,6 @@ function beeswax(name::AbstractString,debug::Int,pause::Float64,limit::Int)
         debugger(arena,gstack,list,deb,ticks)
         ticks.t+=1
     end
-    terminate()
 end
 
 

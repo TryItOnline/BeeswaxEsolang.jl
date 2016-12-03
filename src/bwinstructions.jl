@@ -531,7 +531,6 @@ end
 
 #   c
 function ginputchar(gstack::Array{UInt64,1})
-    print_with_color(:green,"c")
     input=readline(STDIN)
     inp=Char(input[1])
     gstack=push!(gstack,inp)
@@ -539,7 +538,6 @@ end
 
 #   V
 function ginputstring(gstack::Array{UInt64,1})
-    print_with_color(:red,"s")
     input=readline(STDIN)
     inp=input[1:end]
     for c=1:strwidth(inp) #cut off \r\n
@@ -550,7 +548,6 @@ end
 
 #   i
 function ginputint(gstack::Array{UInt64,1})
-    print_with_color(:yellow,"i")
     input=readline(STDIN)
     gstack=push!(gstack,parse(UInt64,input))
 end
@@ -567,7 +564,6 @@ end
 
 #   ,
 function linputchar(list::Array{Pointer,1},ind::Int)
-    print_with_color(:green,"c")
     input=readline(STDIN)
     inp=(input[1])
     list[ind].lstack[end]=inp
@@ -575,7 +571,6 @@ end
 
 #   T
 function linputint(list::Array{Pointer,1},ind::Int)
-    print_with_color(:yellow,"i")
     input=readline(STDIN)
     list[ind].lstack[end]=parse(UInt64,input)
 end
@@ -647,9 +642,4 @@ function writefile(list::Array{Pointer,1},ind::Int,gstack::Array{UInt64,1})
             close(f)
         end
     end
-end
-
-#   ;
-function terminate()
-    println("\nProgram finished!")
 end

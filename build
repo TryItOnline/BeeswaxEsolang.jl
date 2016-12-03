@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$(realpath $BASH_SOURCE)")" || exit 1
+export JULIA_PKGDIR="$(realpath .)"
+julia -e 'push!(LOAD_PATH, "src"); using BeeswaxEsolang'
+chmod 644 lib/*/*.ji
+mkdir -p bin
+grep -A 1000 '^#!.*julia$' build > bin/beeswax
+chmod 755 bin/beeswax
+exit 0
+
+#!/usr/bin/env julia
+
+lib = joinpath(Base.source_dir(), "../lib/v$(VERSION.major).$(VERSION.minor)")
+Base._include_from_serialized(open(readbytes, joinpath(lib, "Match.ji")))
+Base._include_from_serialized(open(readbytes, joinpath(lib, "BeeswaxEsolang.ji")))
+BeeswaxEsolang.beeswax(ARGS[1])

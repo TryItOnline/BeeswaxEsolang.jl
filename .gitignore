@@ -1,3 +1,5 @@
-*.jl.cov
+bin/
+lib/
 *.jl.*.cov
 *.jl.mem
+*.ji
